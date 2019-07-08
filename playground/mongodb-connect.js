@@ -9,9 +9,8 @@ const {MongoClient, ObjectID} = require('mongodb');
 // var {age} = user;
 // console.log(age);
 
-var obj = new ObjectID();
-
-console.log(obj);
+// var obj = new ObjectID();
+// console.log(obj);
 
 MongoClient.connect('mongodb://localhost:27017/ToDoApp', (err, client) => {
     if (err) {
@@ -20,6 +19,17 @@ MongoClient.connect('mongodb://localhost:27017/ToDoApp', (err, client) => {
 
     console.log("Connected to MongoDB server");
     const db = client.db('TodoApp');
+
+    db.collection('Users').insertOne({
+        name: 'alita',
+        age: 29,
+        location: "not Zion bro"
+    }, (err, result) => {
+        if(err){
+            return console.log('Unable to insert to todo', err);
+        }
+    });
+    
 
     // db.collection('Todos').insertOne({
     //     text: "Something to do",
